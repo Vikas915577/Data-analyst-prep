@@ -3,124 +3,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Vikas Sharma's personal Data Analyst learning and job application assistant.">
-  <title>Vikas Career — Data Analyst Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0a0d18">
+  <meta name="description" content="Vikas Career Pro — personal Data Analyst learning, interview and job application app.">
+  <title>Vikas Career Pro</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
   <header class="topbar">
-    <div>
-      <p class="eyebrow">PERSONAL CAREER APP</p>
-      <h1>Vikas Career</h1>
-      <p class="sub">Learn → Practice → Interview → Apply</p>
+    <div class="brand-wrap">
+      <div class="brand-mark">VC</div>
+      <div><div class="eyebrow">PERSONAL CAREER OS</div><h1>Vikas Career <span>PRO</span></h1></div>
     </div>
-    <button class="icon-btn" id="resetBtn" title="Reset local progress" aria-label="Reset progress">↻</button>
+    <button id="resetBtn" class="ghost icon-only" type="button" title="Reset local progress" aria-label="Reset local progress">↻</button>
   </header>
 
-  <main id="app" class="shell">
-    <section id="home" class="view active">
-      <div class="hero card">
-        <div>
-          <p class="muted">Good morning, Vikas 👋</p>
-          <h2>Become a stronger Data Analyst.</h2>
-          <p class="muted">Your plan is built around the skills, experience and projects already present in your resume.</p>
+  <main class="app-shell">
+    <section id="homeView" class="view active" data-view="home">
+      <div class="hero panel">
+        <div class="hero-copy">
+          <div class="eyebrow">DATA ANALYST JOURNEY</div>
+          <h2 id="heroTitle">Good morning, Vikas 👋</h2>
+          <p>Learn the skill. Prove the skill. Explain the skill. Apply with confidence.</p>
+          <div class="hero-actions"><button class="btn primary" data-go="learn" type="button">Start today</button><button class="btn ghost" data-go="interview" type="button">Interview me</button></div>
         </div>
-        <button class="primary" data-go="learn">Start today's lesson</button>
+        <div class="hero-ring" aria-label="Overall progress"><div><strong id="heroProgress">0%</strong><span>ready</span></div></div>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat card"><span>Learning streak</span><strong id="streak">1 day</strong></div>
-        <div class="stat card"><span>Lessons done</span><strong id="lessonsDone">0</strong></div>
-        <div class="stat card"><span>Practice score</span><strong id="practiceScore">0%</strong></div>
-        <div class="stat card"><span>Applications</span><strong id="applicationCount">0</strong></div>
+      <div class="stat-grid">
+        <div class="stat panel"><span>Learning streak</span><strong id="streakStat">1 day</strong><small>keep it moving</small></div>
+        <div class="stat panel"><span>Lessons complete</span><strong id="lessonStat">0/5</strong><small>core roadmap</small></div>
+        <div class="stat panel"><span>Interview score</span><strong id="scoreStat">0%</strong><small>practice history</small></div>
+        <div class="stat panel"><span>Applications</span><strong id="jobStat">0</strong><small>tracked roles</small></div>
       </div>
 
-      <div class="section-head"><div><p class="eyebrow">TODAY</p><h3>Your mission</h3></div><span class="pill">20–30 min</span></div>
-      <div class="mission card">
-        <div class="mission-main">
-          <span class="badge">SQL</span>
-          <h3 id="todayTitle">SQL JOINs</h3>
-          <p id="todayText" class="muted">Understand INNER, LEFT and common business use cases.</p>
-        </div>
-        <button class="secondary" data-go="learn">Learn</button>
-      </div>
+      <div class="section-head"><div><div class="eyebrow">TODAY'S MISSION</div><h3 id="missionTitle">SQL JOINs</h3></div><span class="tag">25 min</span></div>
+      <div class="mission panel"><div><span class="pill blue">SQL</span><p id="missionText">Understand INNER and LEFT JOINs with a business example, then prove it in practice.</p><div class="mini-progress"><i id="missionBar"></i></div></div><button class="btn small" data-go="learn" type="button">Open</button></div>
 
-      <div class="section-head"><div><p class="eyebrow">YOUR TRACK</p><h3>Resume skill map</h3></div></div>
-      <div id="skillMap" class="chips card"></div>
+      <div class="section-head"><div><div class="eyebrow">YOUR ROADMAP</div><h3>Skill readiness</h3></div><button class="text-btn" data-go="learn" type="button">View all</button></div>
+      <div id="roadmapHome" class="roadmap-mini"></div>
+
+      <div class="section-head"><div><div class="eyebrow">NEXT BEST ACTION</div><h3 id="nextActionTitle">Train an interview answer</h3></div></div>
+      <div class="next-action panel"><div class="next-icon">✦</div><div><strong id="nextActionStrong">Explain your latest project in 60 seconds.</strong><p id="nextActionText">A good analyst can explain the business problem, approach, result and validation—not just the dashboard.</p></div><button class="btn small" data-go="projects" type="button">Do it</button></div>
     </section>
 
-    <section id="learn" class="view">
-      <div class="section-head"><div><p class="eyebrow">LEARN</p><h2>Skill roadmap</h2></div></div>
+    <section id="learnView" class="view" data-view="learn">
+      <div class="page-title"><div><div class="eyebrow">LEARN</div><h2>Your mentor roadmap</h2><p>Every lesson follows <b>Understand → Try → Explain → Recall</b>.</p></div></div>
       <div id="lessonList" class="stack"></div>
-      <div id="lessonDetail" class="card detail hidden"></div>
+      <div id="lessonDetail" class="panel detail hidden"></div>
     </section>
 
-    <section id="practice" class="view">
-      <div class="section-head"><div><p class="eyebrow">PRACTICE</p><h2>Interview trainer</h2></div><span class="pill" id="questionCounter">1 / 5</span></div>
-      <div id="quizCard" class="card quiz"></div>
+    <section id="practiceView" class="view" data-view="practice">
+      <div class="page-title"><div><div class="eyebrow">PRACTICE</div><h2>Skill drills</h2><p>Quick checks before you move to interview mode.</p></div></div>
+      <div class="panel practice-card"><div class="practice-top"><span class="pill purple" id="practiceTopic">SQL</span><span class="tag" id="practiceIndex">1 / 10</span></div><h3 id="practiceQuestion">Question</h3><div id="practiceOptions" class="answers"></div><div id="practiceFeedback" class="feedback hidden"></div><div class="practice-actions"><button id="practiceNext" class="btn primary" type="button">Choose an answer</button></div></div>
     </section>
 
-    <section id="apply" class="view">
-      <div class="section-head">
-        <div><p class="eyebrow">APPLY</p><h2>Job tracker</h2></div>
-        <button class="primary" id="addJobBtn">+ Add job</button>
-      </div>
-      <div class="apply-summary card">
-        <div><span>Saved</span><strong id="savedCount">0</strong></div>
-        <div><span>Applied</span><strong id="appliedCount">0</strong></div>
-        <div><span>Interview</span><strong id="interviewCount">0</strong></div>
-      </div>
-      <div id="jobList" class="stack"></div>
-      <div class="tip card"><strong>Resume → interview</strong><p>Paste a job description into your notes and compare it with your skill map before applying.</p></div>
+    <section id="interviewView" class="view" data-view="interview">
+      <div class="page-title"><div><div class="eyebrow">INTERVIEW MODE</div><h2>Talk like an analyst</h2><p>Answer in your own words. The app checks for the important concepts.</p></div><span class="pill gold">Technical</span></div>
+      <div class="panel interview-card"><div class="interview-meta"><span id="interviewRound">ROUND 1 · TECHNICAL</span><span id="interviewCount">1 / 8</span></div><h3 id="interviewQuestion">Loading…</h3><textarea id="interviewAnswer" rows="7" placeholder="Type your answer here…"></textarea><div class="interview-actions"><button id="checkAnswer" class="btn primary" type="button">Check my answer</button><button id="speakTip" class="btn ghost" type="button">Answer tips</button></div><div id="interviewFeedback" class="feedback hidden"></div></div>
     </section>
 
-    <section id="profile" class="view">
-      <div class="profile-card card">
-        <div class="avatar">VS</div>
-        <div>
-          <p class="eyebrow">PROFILE</p>
-          <h2>Vikas Sharma</h2>
-          <p class="muted">Data Analyst · 1+ year experience</p>
-        </div>
-      </div>
-      <div class="card">
-        <p class="eyebrow">CURRENT STACK</p>
-        <div id="profileSkills" class="chips"></div>
-      </div>
-      <div class="card">
-        <p class="eyebrow">EXPERIENCE</p>
-        <div class="timeline">
-          <div><strong>Data Analyst · Analyticore</strong><span>Nov 2025 – Present</span><p>SQL, Birst BI dashboards, data validation, ETL support, Star Schema and stakeholder reporting.</p></div>
-          <div><strong>Data Analytics Intern · Sun system</strong><span>Apr 2025 – Sep 2025</span><p>Power BI, Python, SQL, Excel, KPI reporting and visualization.</p></div>
-        </div>
-      </div>
-      <div class="card">
-        <p class="eyebrow">PROJECTS</p>
-        <div id="projects" class="stack tight"></div>
-      </div>
+    <section id="sqlView" class="view" data-view="sql">
+      <div class="page-title"><div><div class="eyebrow">SQL LAB</div><h2>Practice like the job</h2><p>Small business datasets with instant checks.</p></div><span class="pill blue">Local runner</span></div>
+      <div class="panel sql-card"><div class="sql-head"><div><strong id="sqlTitle">Revenue by customer</strong><p id="sqlPrompt">Write a query that returns customer name and total sales, highest sales first.</p></div><button id="loadSqlHint" class="text-btn" type="button">Hint</button></div><div class="sql-grid"><div><div class="table-title">customers</div><div id="customersTable" class="table-wrap"></div></div><div><div class="table-title">orders</div><div id="ordersTable" class="table-wrap"></div></div></div><textarea id="sqlEditor" rows="8" spellcheck="false">SELECT customer_name, SUM(amount) AS total_sales FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customer_name ORDER BY total_sales DESC;</textarea><div class="sql-actions"><button id="runSql" class="btn primary" type="button">Run query</button><button id="resetSql" class="btn ghost" type="button">Reset</button></div><div id="sqlResult" class="sql-result"></div></div>
+    </section>
+
+    <section id="powerbiView" class="view" data-view="powerbi">
+      <div class="page-title"><div><div class="eyebrow">POWER BI LAB</div><h2>Choose the right visual</h2><p>Business thinking first. Visual second.</p></div></div>
+      <div id="pbiCase" class="panel case-card"></div>
+    </section>
+
+    <section id="projectsView" class="view" data-view="projects">
+      <div class="page-title"><div><div class="eyebrow">PROJECT LAB</div><h2>Build + explain</h2><p>Turn your resume projects into interview-ready stories.</p></div></div>
+      <div id="projectList" class="stack"></div>
+      <div id="projectDetail" class="panel detail hidden"></div>
+    </section>
+
+    <section id="revisionView" class="view" data-view="revision">
+      <div class="page-title"><div><div class="eyebrow">SMART REVISION</div><h2>Recall, don't reread</h2><p>Short recall sessions keep weak concepts visible.</p></div></div>
+      <div id="revisionList" class="stack"></div>
+    </section>
+
+    <section id="jobsView" class="view" data-view="jobs">
+      <div class="page-title"><div><div class="eyebrow">JOB COMMAND CENTER</div><h2>Apply with context</h2><p>Track applications and compare job descriptions with your resume.</p></div><button id="addJobBtn" class="btn primary" type="button">+ Add job</button></div>
+      <div class="job-tabs"><button class="job-tab active" data-jobtab="tracker" type="button">Tracker</button><button class="job-tab" data-jobtab="matcher" type="button">Job matcher</button></div>
+      <div id="trackerTab" class="job-tab-content"><div id="jobSummary" class="job-summary panel"></div><div id="jobList" class="stack"></div></div>
+      <div id="matcherTab" class="job-tab-content hidden"><div class="panel matcher"><div class="eyebrow">PASTE A JOB DESCRIPTION</div><textarea id="jdInput" rows="9" placeholder="Paste the role description here…"></textarea><button id="analyzeJob" class="btn primary" type="button">Analyze match</button><div id="matchResult" class="match-result"></div></div></div>
+    </section>
+
+    <section id="profileView" class="view" data-view="profile">
+      <div class="page-title"><div><div class="eyebrow">PROFILE</div><h2>Your analyst profile</h2><p>Everything in one place for your learning and job journey.</p></div></div>
+      <div class="profile-hero panel"><div class="avatar">VS</div><div><h3>Vikas Sharma</h3><p>Data Analyst · 1+ year experience</p></div><span class="pill purple">Data Analyst</span></div>
+      <div class="panel"><div class="eyebrow">CORE STACK</div><div id="profileSkills" class="chips"></div></div>
+      <div class="panel"><div class="eyebrow">EXPERIENCE</div><div class="timeline"><div><strong>Data Analyst · Analyticore</strong><span>Nov 2025 – Present</span><p>Birst dashboards, SQL reporting, validation, ETL support, Star Schema and stakeholder requirements.</p></div><div><strong>Data Analytics Intern · Sun system</strong><span>Apr 2025 – Sep 2025</span><p>Power BI dashboards, Python, SQL, Advanced Excel and KPI reporting.</p></div></div></div>
+      <div class="panel"><div class="eyebrow">RESUME PROJECTS</div><div id="profileProjects" class="stack tight"></div></div>
     </section>
   </main>
 
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <button class="nav-item active" data-go="home"><span>⌂</span>Home</button>
-    <button class="nav-item" data-go="learn"><span>▣</span>Learn</button>
-    <button class="nav-item" data-go="practice"><span>✓</span>Practice</button>
-    <button class="nav-item" data-go="apply"><span>➜</span>Apply</button>
-    <button class="nav-item" data-go="profile"><span>●</span>Profile</button>
+  <nav class="bottom-nav" aria-label="Primary navigation">
+    <button class="nav-item active" data-go="home" type="button"><b>⌂</b><span>Home</span></button>
+    <button class="nav-item" data-go="learn" type="button"><b>▣</b><span>Learn</span></button>
+    <button class="nav-item" data-go="practice" type="button"><b>✓</b><span>Practice</span></button>
+    <button class="nav-item" data-go="interview" type="button"><b>◉</b><span>Interview</span></button>
+    <button class="nav-item" data-go="jobs" type="button"><b>➜</b><span>Jobs</span></button>
   </nav>
 
-  <div class="modal hidden" id="jobModal">
-    <div class="modal-box card">
-      <div class="modal-head"><h3>Add application</h3><button class="icon-btn" id="closeModal">×</button></div>
-      <label>Company<input id="jobCompany" placeholder="e.g. TCS"></label>
-      <label>Role<input id="jobRole" placeholder="e.g. Data Analyst"></label>
-      <label>Status<select id="jobStatus"><option>Saved</option><option>Applied</option><option>Interview</option><option>Rejected</option><option>Selected</option></select></label>
-      <label>Notes<textarea id="jobNotes" rows="4" placeholder="Skills required, follow-up date, interview notes..."></textarea></label>
-      <button class="primary full" id="saveJob">Save application</button>
-    </div>
-  </div>
+  <div id="moreSheet" class="sheet-backdrop hidden"><div class="sheet panel"><div class="sheet-head"><h3>More</h3><button id="closeSheet" class="icon-only ghost" type="button">×</button></div><div class="more-grid"><button data-go="sql" type="button">SQL Lab<span>Queries + checks</span></button><button data-go="powerbi" type="button">Power BI Lab<span>Business cases</span></button><button data-go="projects" type="button">Project Lab<span>Build + explain</span></button><button data-go="revision" type="button">Revision<span>Recall weak topics</span></button><button data-go="profile" type="button">Profile<span>Your resume base</span></button></div></div></div>
+  <button id="moreFloating" class="more-fab" type="button" aria-label="More tools">+</button>
 
-  <script src="java script.js"></script>
-</body>
-</html>
+  <div id="jobModal" class="modal hidden"><div class="modal-box panel"><div class="modal-head"><h3>Add application</h3><button id="closeJobModal" class="icon-only ghost" type="button">×</button></div><label>Company<input id="jobCompany" placeholder="e.g. Deloitte"></label><label>Role<input id="jobRole" placeholder="e.g. Data Analyst"></label><label>Status<select id="jobStatus"><option>Saved</option><option>Applied</option><option>Interview</option><option>Rejected</option><option>Selected</option></select></label><label>Notes<textarea id="jobNotes" rows="3" placeholder="Skills, interview notes, follow-up…"></textarea></label><button id="saveJob" class="btn primary full" type="button">Save application</button></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="data/data.js"></script><script src="assets/app.js"></script>
+</body></html>
