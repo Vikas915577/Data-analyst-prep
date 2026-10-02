@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Vikas Sharma's personal Data Analyst learning and job application assistant.">
+  <title>Vikas Career — Data Analyst Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">PERSONAL CAREER APP</p>
+      <h1>Vikas Career</h1>
+      <p class="sub">Learn → Practice → Interview → Apply</p>
+    </div>
+    <button class="icon-btn" id="resetBtn" title="Reset local progress" aria-label="Reset progress">↻</button>
+  </header>
+
+  <main id="app" class="shell">
+    <section id="home" class="view active">
+      <div class="hero card">
+        <div>
+          <p class="muted">Good morning, Vikas 👋</p>
+          <h2>Become a stronger Data Analyst.</h2>
+          <p class="muted">Your plan is built around the skills, experience and projects already present in your resume.</p>
+        </div>
+        <button class="primary" data-go="learn">Start today's lesson</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat card"><span>Learning streak</span><strong id="streak">1 day</strong></div>
+        <div class="stat card"><span>Lessons done</span><strong id="lessonsDone">0</strong></div>
+        <div class="stat card"><span>Practice score</span><strong id="practiceScore">0%</strong></div>
+        <div class="stat card"><span>Applications</span><strong id="applicationCount">0</strong></div>
+      </div>
+
+      <div class="section-head"><div><p class="eyebrow">TODAY</p><h3>Your mission</h3></div><span class="pill">20–30 min</span></div>
+      <div class="mission card">
+        <div class="mission-main">
+          <span class="badge">SQL</span>
+          <h3 id="todayTitle">SQL JOINs</h3>
+          <p id="todayText" class="muted">Understand INNER, LEFT and common business use cases.</p>
+        </div>
+        <button class="secondary" data-go="learn">Learn</button>
+      </div>
+
+      <div class="section-head"><div><p class="eyebrow">YOUR TRACK</p><h3>Resume skill map</h3></div></div>
+      <div id="skillMap" class="chips card"></div>
+    </section>
+
+    <section id="learn" class="view">
+      <div class="section-head"><div><p class="eyebrow">LEARN</p><h2>Skill roadmap</h2></div></div>
+      <div id="lessonList" class="stack"></div>
+      <div id="lessonDetail" class="card detail hidden"></div>
+    </section>
+
+    <section id="practice" class="view">
+      <div class="section-head"><div><p class="eyebrow">PRACTICE</p><h2>Interview trainer</h2></div><span class="pill" id="questionCounter">1 / 5</span></div>
+      <div id="quizCard" class="card quiz"></div>
+    </section>
+
+    <section id="apply" class="view">
+      <div class="section-head">
+        <div><p class="eyebrow">APPLY</p><h2>Job tracker</h2></div>
+        <button class="primary" id="addJobBtn">+ Add job</button>
+      </div>
+      <div class="apply-summary card">
+        <div><span>Saved</span><strong id="savedCount">0</strong></div>
+        <div><span>Applied</span><strong id="appliedCount">0</strong></div>
+        <div><span>Interview</span><strong id="interviewCount">0</strong></div>
+      </div>
+      <div id="jobList" class="stack"></div>
+      <div class="tip card"><strong>Resume → interview</strong><p>Paste a job description into your notes and compare it with your skill map before applying.</p></div>
+    </section>
+
+    <section id="profile" class="view">
+      <div class="profile-card card">
+        <div class="avatar">VS</div>
+        <div>
+          <p class="eyebrow">PROFILE</p>
+          <h2>Vikas Sharma</h2>
+          <p class="muted">Data Analyst · 1+ year experience</p>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">CURRENT STACK</p>
+        <div id="profileSkills" class="chips"></div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">EXPERIENCE</p>
+        <div class="timeline">
+          <div><strong>Data Analyst · Analyticore</strong><span>Nov 2025 – Present</span><p>SQL, Birst BI dashboards, data validation, ETL support, Star Schema and stakeholder reporting.</p></div>
+          <div><strong>Data Analytics Intern · Sun system</strong><span>Apr 2025 – Sep 2025</span><p>Power BI, Python, SQL, Excel, KPI reporting and visualization.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">PROJECTS</p>
+        <div id="projects" class="stack tight"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-go="home"><span>⌂</span>Home</button>
+    <button class="nav-item" data-go="learn"><span>▣</span>Learn</button>
+    <button class="nav-item" data-go="practice"><span>✓</span>Practice</button>
+    <button class="nav-item" data-go="apply"><span>➜</span>Apply</button>
+    <button class="nav-item" data-go="profile"><span>●</span>Profile</button>
+  </nav>
+
+  <div class="modal hidden" id="jobModal">
+    <div class="modal-box card">
+      <div class="modal-head"><h3>Add application</h3><button class="icon-btn" id="closeModal">×</button></div>
+      <label>Company<input id="jobCompany" placeholder="e.g. TCS"></label>
+      <label>Role<input id="jobRole" placeholder="e.g. Data Analyst"></label>
+      <label>Status<select id="jobStatus"><option>Saved</option><option>Applied</option><option>Interview</option><option>Rejected</option><option>Selected</option></select></label>
+      <label>Notes<textarea id="jobNotes" rows="4" placeholder="Skills required, follow-up date, interview notes..."></textarea></label>
+      <button class="primary full" id="saveJob">Save application</button>
+    </div>
+  </div>
+
+  <script src="java script.js"></script>
+</body>
+</html>
