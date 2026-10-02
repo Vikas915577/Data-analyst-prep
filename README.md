@@ -1,24 +1,21 @@
-# Vikas Career Pro — V2
+# Vikas Career Pro V3
 
-Personal, mobile-first Data Analyst career app built around Vikas Sharma's resume.
+Single-file, mobile-first personal Data Analyst preparation + job application app.
 
-## V2 features
-- Premium mobile-first dashboard and progress ring
+## Included
+- 14-day job-readiness sprint
 - Resume-based skill roadmap
-- Mentor lessons: Understand → Try → Explain → Recall
-- Practice drills with scoring
-- Interview mode with concept-coverage feedback
-- SQL Lab with sample business data and instant challenge checks
-- Power BI business-case simulator
-- Project Lab based on resume projects with step tracking and 60-second pitch
-- Smart Revision recall cards
-- Job tracker with status management
-- Local Job Matcher for pasted job descriptions
-- Profile, experience and project view
-- LocalStorage persistence for progress and applications
+- Learn → Try → Explain → Recall lessons
+- 10-question practice trainer
+- Interview coach with concept coverage
+- SQL lab with sample dataset
+- Power BI business-case lab
+- Resume project lab with 60-second pitches
+- Smart revision
+- Job application tracker
+- Job-description matcher
+- Free study-resource links
+- LocalStorage progress persistence
 
-## Run
-Open `index.html` in a browser. No build step is required.
-
-## Data
-`data/data.js` contains the resume-aligned curriculum, interview questions, business cases and sample SQL tables.
+## Why V3 is single-file
+The previous live screenshot showed plain unstyled HTML because the page referenced `assets/styles.css` and `assets/app.js` while the files were at the repository root. V3 embeds CSS and JavaScript directly in `index.html`, eliminating that path mismatch.

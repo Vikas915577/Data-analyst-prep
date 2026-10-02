@@ -1,117 +1,376 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0a0d18">
-  <meta name="description" content="Vikas Career Pro — personal Data Analyst learning, interview and job application app.">
-  <title>Vikas Career Pro</title>
-  <link rel="stylesheet" href="assets/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070a12">
+<meta name="description" content="Vikas Career Pro — personal Data Analyst preparation and job application app.">
+<title>Vikas Career Pro — V3</title>
+<style>
+:root{
+  --bg:#070a12;--panel:#101626;--panel2:#141c30;--line:#27324b;--text:#f5f7ff;--muted:#9da8c0;
+  --accent:#7f8cff;--accent2:#a578ff;--good:#42d49a;--warn:#ffd166;--bad:#ff6476;
+  --shadow:0 22px 60px rgba(0,0,0,.28);--radius:22px;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--text);background:
+radial-gradient(circle at 0% 0%,rgba(127,140,255,.09),transparent 28%),
+radial-gradient(circle at 100% 15%,rgba(165,120,255,.08),transparent 28%),
+linear-gradient(180deg,#070a12 0,#090e18 55%,#070a12 100%)}
+button,input,select,textarea{font:inherit}
+button,a{cursor:pointer}
+button{color:inherit}
+a{color:#c7ceff;text-decoration:none}
+a:hover{text-decoration:underline}
+.hidden{display:none!important}
+.app{min-height:100vh}
+.topbar{
+  position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 15px;background:rgba(7,10,18,.86);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.05)
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-weight:950;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 28px rgba(127,140,255,.24)}
+.eyebrow{font-size:9px;letter-spacing:1.7px;font-weight:900;color:#8995b7;margin:0 0 6px}
+.brand h1{font-size:18px;letter-spacing:-.4px;margin:0;white-space:nowrap}
+.brand .pro{font-size:9px;padding:3px 5px;border:1px solid #3c4767;border-radius:6px;color:#d0d7ef;letter-spacing:1px;vertical-align:middle}
+.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:#141d31;border-radius:13px;display:grid;place-items:center;font-size:20px}
+.shell{max-width:760px;margin:0 auto;padding:15px 13px 108px}
+.view{display:none}.view.active{display:block}
+.panel{
+  background:linear-gradient(180deg,rgba(21,28,48,.94),rgba(12,18,31,.94));
+  border:1px solid rgba(79,93,128,.36);border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.hero{padding:19px;display:grid;grid-template-columns:1fr 110px;gap:15px;align-items:center}
+.hero h2{font-size:30px;line-height:1.02;letter-spacing:-.9px;margin:6px 0 9px}
+.hero p{color:var(--muted);font-size:13px;line-height:1.55;margin:0}
+.hero-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{min-height:44px;border:0;border-radius:14px;padding:0 14px;font-weight:900}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2))}
+.btn.ghost{background:#141d31;border:1px solid #2d3855}
+.btn.small{min-height:38px;padding:0 11px;font-size:12px}
+.text-btn{border:0;background:none;color:#c4cbff;font-size:11px;font-weight:850;padding:5px}
+.hero-ring{width:106px;height:106px;border-radius:50%;display:grid;place-items:center;justify-self:end;
+  background:radial-gradient(circle,#0b1120 57%,transparent 58%),conic-gradient(var(--accent) 0deg,rgba(255,255,255,.08) 0deg);
+  border:1px solid #35415e}
+.hero-ring strong{font-size:23px;display:block;text-align:center}.hero-ring span{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;text-align:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:10px 0 19px}
+.stat{padding:13px}.stat span,.stat small{display:block;color:var(--muted);font-size:10px}.stat strong{display:block;font-size:22px;margin:3px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:18px 0 9px}
+.section-head h2,.section-head h3,.page-title h2{margin:0}
+.page-title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:2px 0 14px}
+.page-title h2{font-size:27px;letter-spacing:-.55px}.page-title p{color:var(--muted);font-size:12px;line-height:1.5;margin:4px 0 0}
+.tag,.pill{display:inline-flex;align-items:center;justify-content:center;padding:6px 9px;border-radius:999px;font-size:9px;font-weight:900;border:1px solid #313d5b;background:#18213a;color:#d8def1}
+.pill.blue{color:#c5d4ff;border-color:#2d467d;background:rgba(70,120,255,.11)}
+.pill.purple{color:#dacaff;border-color:#4f3d7c;background:rgba(165,120,255,.11)}
+.pill.gold{color:#ffe3a0;border-color:#5e502d;background:rgba(255,209,102,.08)}
+.mission{padding:15px;display:grid;grid-template-columns:1fr auto;gap:13px;align-items:end}
+.mission h3{margin:7px 0 4px;font-size:19px}.mission p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.progress{height:6px;background:#090f1b;border-radius:999px;overflow:hidden;margin-top:11px}.progress i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s ease}
+.roadmap{display:grid;gap:8px}.road{padding:13px;display:grid;grid-template-columns:1fr auto;gap:7px}.road strong{font-size:13px}.road small{font-size:10px;color:var(--muted)}.road .bar{grid-column:1/-1}
+.bar{height:5px;background:#0a1020;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.next{padding:14px;display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center}.next-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#1c2740;color:#cbd3ff;font-size:18px}
+.next strong{font-size:13px}.next p{margin:4px 0 0;color:var(--muted);font-size:11px;line-height:1.45}
+.resources{display:grid;gap:8px}.resource{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 13px}
+.resource strong{font-size:12px}.resource span{font-size:10px;color:var(--muted)}
+.stack{display:grid;gap:9px}.lesson,.project,.revision,.job{padding:15px}
+.lesson{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;text-align:left}.lesson h3,.project h3,.revision h3,.job h3{font-size:16px;margin:7px 0 4px}.lesson p,.project p,.revision p,.job p{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
+.detail{padding:16px;margin-top:9px}.detail h3{margin:0 0 6px}.detail p{font-size:12px;color:var(--muted);line-height:1.55}.example{background:#090f1d;border:1px solid #25314a;border-radius:13px;padding:12px;white-space:pre-wrap;font:11px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e0e6ff}
+.practice-card,.interview-card,.sql-card,.case-card{padding:17px}.practice-top,.interview-meta,.sql-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.practice-card h3,.interview-card h3{font-size:22px;line-height:1.28;margin:14px 0}.answers{display:grid;gap:8px}.answer{border:1px solid #2a3550;background:#111a2d;color:#edf0f8;border-radius:14px;padding:13px;text-align:left;font-weight:750}.answer.correct{border-color:var(--good);background:rgba(66,212,154,.08)}.answer.wrong{border-color:var(--bad);background:rgba(255,100,118,.08)}
+.feedback{margin-top:12px;padding:12px;border-radius:14px;background:#0c1424;border:1px solid #293650;color:#d4daea;font-size:12px;line-height:1.55}.feedback.good{border-color:#2a604c}.feedback.warn{border-color:#63512a}.feedback.bad{border-color:#65323b}
+.actions{display:flex;gap:8px;margin-top:13px}.actions>*{flex:1}
+textarea,input,select{width:100%;background:#090f1d;color:var(--text);border:1px solid #2a3651;border-radius:14px;padding:12px;outline:none}.interview-card textarea,.matcher textarea,.sql-card textarea{margin-top:10px;resize:vertical}.interview-card textarea:focus,input:focus,select:focus{border-color:#526496;box-shadow:0 0 0 3px rgba(127,140,255,.08)}
+.sql-head p{color:var(--muted);font-size:11px;line-height:1.45;margin:5px 0 0}.sql-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:13px 0}.table-title{font:900 10px ui-monospace,monospace;color:#8e9abd;margin-bottom:5px}.table-wrap{overflow:auto;border:1px solid #253149;border-radius:12px}.table-wrap table{width:100%;border-collapse:collapse;font-size:10px}.table-wrap th,.table-wrap td{padding:8px 7px;text-align:left;border-bottom:1px solid #202b42;white-space:nowrap}.table-wrap th{background:#10182a;color:#9ca9c4}.result-good,.result-bad{margin-top:11px;padding:12px;border-radius:13px;font-size:11px;line-height:1.5}.result-good{border:1px solid #2a604c;background:rgba(66,212,154,.07)}.result-bad{border:1px solid #65323b;background:rgba(255,100,118,.07)}
+.case-card h3{font-size:20px;margin:8px 0 5px}.case-card>p{font-size:12px;color:var(--muted);line-height:1.5}.case-choices{display:grid;gap:8px;margin-top:14px}.case-choice{padding:13px;border-radius:14px;background:#111a2d;border:1px solid #293650;color:var(--text);text-align:left;font-weight:750}.case-choice.correct{border-color:var(--good);background:rgba(66,212,154,.08)}.case-choice.wrong{border-color:var(--bad);background:rgba(255,100,118,.08)}
+.project-top,.job-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.project-tools{font-size:10px;color:#9aa6c0}.steps{display:grid;gap:7px;margin-top:11px}.step{display:flex;gap:8px;align-items:center;color:#b9c3d8;font-size:11px}.step.done{color:#e9edf8}.dot{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;border:1px solid #36425f;font-size:9px}.step.done .dot{border-color:#2c6b52;background:rgba(66,212,154,.1);color:var(--good)}.project-actions{display:flex;gap:8px;margin-top:12px}.project-actions>*{flex:1}
+.job-summary{padding:13px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;margin-bottom:9px}.job-summary strong{display:block;font-size:20px}.job-summary span{display:block;font-size:9px;color:var(--muted)}.job-actions{display:flex;gap:8px;margin-top:8px}.job-actions>*{flex:1}
+.job-tabs{display:flex;gap:7px;margin:0 0 10px}.job-tab{flex:1;min-height:38px;border-radius:12px;border:1px solid #293650;background:#11192c;color:#96a1bb;font-weight:850}.job-tab.active{background:#1d2740;color:#fff;border-color:#42517a}
+.match-result{margin-top:10px}.match-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.match-score{font-size:27px;font-weight:950}.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.match-list{padding:11px;border:1px solid #27334c;border-radius:13px;background:#0d1424}.match-list strong{font-size:11px}.match-list p{font-size:10px;color:var(--muted);line-height:1.45;margin:5px 0 0}
+.profile-hero{padding:15px;display:flex;align-items:center;gap:12px}.avatar{width:55px;height:55px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:19px;font-weight:950}.profile-hero h3{margin:0;font-size:18px}.profile-hero p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid #2b3650;background:#111a2c;border-radius:999px;padding:7px 9px;font-size:10px;color:#d9dfef}.timeline{display:grid;gap:14px}.timeline>div{border-left:2px solid #32405e;padding-left:12px}.timeline strong{display:block;font-size:12px}.timeline span{display:block;color:var(--muted);font-size:10px;margin-top:3px}.timeline p{font-size:11px;color:var(--muted);line-height:1.45;margin:5px 0 0}
+.sheet-backdrop{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.62);display:grid;align-items:end}.sheet{max-width:760px;width:100%;margin:0 auto;padding:16px;border-radius:24px 24px 0 0}.sheet-head{display:flex;justify-content:space-between;align-items:center}.sheet-head h3{margin:0}.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.more-grid button{min-height:70px;border-radius:14px;border:1px solid #2a3651;background:#111a2d;color:#f2f4fb;text-align:left;padding:11px;font-weight:850}.more-grid span{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:30;max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(8,12,22,.96);backdrop-filter:blur(16px);border-top:1px solid #26314a;padding:7px 6px calc(7px + env(safe-area-inset-bottom))}
+.nav-item{border:0;background:none;color:#7e89a4;display:grid;place-items:center;gap:2px;padding:5px 0;font-size:9px;font-weight:900}.nav-item b{font-size:17px}.nav-item.active{color:#fff}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;display:grid;align-items:end;padding:12px}.modal-box{width:100%;max-width:700px;margin:auto;padding:16px}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0}.modal label{display:grid;gap:6px;font-size:10px;color:var(--muted);margin-top:9px}.toast{position:fixed;left:50%;bottom:82px;transform:translateX(-50%) translateY(20px);background:#1c2740;border:1px solid #384665;padding:9px 12px;border-radius:12px;font-size:11px;opacity:0;pointer-events:none;transition:.2s;z-index:60}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(min-width:620px){.hero{padding:22px}.hero h2{font-size:34px}}
+@media(max-width:520px){.hero{grid-template-columns:1fr}.hero-ring{justify-self:start;width:94px;height:94px}.hero-actions .btn{flex:1}.next{grid-template-columns:42px 1fr}.next .btn{grid-column:2}.page-title{align-items:start}.sql-grid,.match-grid{grid-template-columns:1fr}.profile-hero{align-items:flex-start}.profile-hero .pill{margin-left:auto}}
+</style>
 </head>
 <body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-  <header class="topbar">
-    <div class="brand-wrap">
-      <div class="brand-mark">VC</div>
-      <div><div class="eyebrow">PERSONAL CAREER OS</div><h1>Vikas Career <span>PRO</span></h1></div>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="mark">VC</div><div><div class="eyebrow">PERSONAL CAREER OS</div><h1>Vikas Career <span class="pro">PRO V3</span></h1></div></div>
+  <button class="icon-btn" id="resetBtn" type="button" title="Reset local progress" aria-label="Reset local progress">↻</button>
+</header>
+
+<main class="shell">
+<section id="homeView" class="view active">
+  <div class="hero panel">
+    <div>
+      <div class="eyebrow">DATA ANALYST JOURNEY</div>
+      <h2>Good morning, Vikas 👋</h2>
+      <p>Learn the skill. Prove the skill. Explain the skill. Apply with confidence.</p>
+      <div class="hero-actions">
+        <button class="btn primary" data-go="learn" type="button">Start today</button>
+        <button class="btn ghost" data-go="interview" type="button">Interview me</button>
+      </div>
     </div>
-    <button id="resetBtn" class="ghost icon-only" type="button" title="Reset local progress" aria-label="Reset local progress">↻</button>
-  </header>
+    <div class="hero-ring" id="heroRing"><div><strong id="heroProgress">0%</strong><span>ready</span></div></div>
+  </div>
 
-  <main class="app-shell">
-    <section id="homeView" class="view active" data-view="home">
-      <div class="hero panel">
-        <div class="hero-copy">
-          <div class="eyebrow">DATA ANALYST JOURNEY</div>
-          <h2 id="heroTitle">Good morning, Vikas 👋</h2>
-          <p>Learn the skill. Prove the skill. Explain the skill. Apply with confidence.</p>
-          <div class="hero-actions"><button class="btn primary" data-go="learn" type="button">Start today</button><button class="btn ghost" data-go="interview" type="button">Interview me</button></div>
-        </div>
-        <div class="hero-ring" aria-label="Overall progress"><div><strong id="heroProgress">0%</strong><span>ready</span></div></div>
-      </div>
+  <div class="stat-grid">
+    <div class="stat panel"><span>Learning streak</span><strong id="streakStat">1 day</strong><small>keep it moving</small></div>
+    <div class="stat panel"><span>14-day sprint</span><strong id="dayStat">Day 1</strong><small>job-ready plan</small></div>
+    <div class="stat panel"><span>Interview score</span><strong id="scoreStat">0%</strong><small>practice history</small></div>
+    <div class="stat panel"><span>Applications</span><strong id="jobStat">0</strong><small>tracked roles</small></div>
+  </div>
 
-      <div class="stat-grid">
-        <div class="stat panel"><span>Learning streak</span><strong id="streakStat">1 day</strong><small>keep it moving</small></div>
-        <div class="stat panel"><span>Lessons complete</span><strong id="lessonStat">0/5</strong><small>core roadmap</small></div>
-        <div class="stat panel"><span>Interview score</span><strong id="scoreStat">0%</strong><small>practice history</small></div>
-        <div class="stat panel"><span>Applications</span><strong id="jobStat">0</strong><small>tracked roles</small></div>
-      </div>
+  <div class="section-head"><div><div class="eyebrow">TODAY'S MISSION</div><h3 id="missionTitle">SQL JOINs</h3></div><span class="tag">25 min</span></div>
+  <div class="mission panel"><div><span class="pill blue">SQL</span><p id="missionText">Understand INNER and LEFT JOINs with a business example, then prove it in practice.</p><div class="progress"><i id="missionBar"></i></div></div><button class="btn small ghost" data-go="learn" type="button">Open</button></div>
 
-      <div class="section-head"><div><div class="eyebrow">TODAY'S MISSION</div><h3 id="missionTitle">SQL JOINs</h3></div><span class="tag">25 min</span></div>
-      <div class="mission panel"><div><span class="pill blue">SQL</span><p id="missionText">Understand INNER and LEFT JOINs with a business example, then prove it in practice.</p><div class="mini-progress"><i id="missionBar"></i></div></div><button class="btn small" data-go="learn" type="button">Open</button></div>
+  <div class="section-head"><div><div class="eyebrow">YOUR ROADMAP</div><h3>Skill readiness</h3></div><button class="text-btn" data-go="learn" type="button">View all</button></div>
+  <div id="roadmapHome" class="roadmap"></div>
 
-      <div class="section-head"><div><div class="eyebrow">YOUR ROADMAP</div><h3>Skill readiness</h3></div><button class="text-btn" data-go="learn" type="button">View all</button></div>
-      <div id="roadmapHome" class="roadmap-mini"></div>
+  <div class="section-head"><div><div class="eyebrow">NEXT BEST ACTION</div><h3>Build interview confidence</h3></div></div>
+  <div class="next panel"><div class="next-icon">✦</div><div><strong>Explain your latest project in 60 seconds.</strong><p>Use problem → data → SQL/BI → KPI → insight. Your resume already contains four project stories to practice.</p></div><button class="btn small ghost" data-go="projects" type="button">Do it</button></div>
 
-      <div class="section-head"><div><div class="eyebrow">NEXT BEST ACTION</div><h3 id="nextActionTitle">Train an interview answer</h3></div></div>
-      <div class="next-action panel"><div class="next-icon">✦</div><div><strong id="nextActionStrong">Explain your latest project in 60 seconds.</strong><p id="nextActionText">A good analyst can explain the business problem, approach, result and validation—not just the dashboard.</p></div><button class="btn small" data-go="projects" type="button">Do it</button></div>
-    </section>
+  <div class="section-head"><div><div class="eyebrow">FREE RESOURCES</div><h3>Study without paying</h3></div></div>
+  <div class="resources">
+    <a class="resource panel" href="https://learn.microsoft.com/en-us/training/career-paths/data-analyst" target="_blank" rel="noopener"><div><strong>Microsoft Learn · Data Analyst</strong><span>Power BI + analytics pathway</span></div><span>↗</span></a>
+    <a class="resource panel" href="https://sqlbolt.com/" target="_blank" rel="noopener"><div><strong>SQLBolt</strong><span>Interactive SQL lessons + exercises</span></div><span>↗</span></a>
+    <a class="resource panel" href="https://www.kaggle.com/learn/python" target="_blank" rel="noopener"><div><strong>Kaggle Learn · Python</strong><span>Free hands-on Python learning</span></div><span>↗</span></a>
+  </div>
+</section>
 
-    <section id="learnView" class="view" data-view="learn">
-      <div class="page-title"><div><div class="eyebrow">LEARN</div><h2>Your mentor roadmap</h2><p>Every lesson follows <b>Understand → Try → Explain → Recall</b>.</p></div></div>
-      <div id="lessonList" class="stack"></div>
-      <div id="lessonDetail" class="panel detail hidden"></div>
-    </section>
+<section id="learnView" class="view">
+  <div class="page-title"><div><div class="eyebrow">LEARN</div><h2>Your mentor roadmap</h2><p>Understand → Try → Explain → Recall</p></div></div>
+  <div id="lessonList" class="stack"></div>
+  <div id="lessonDetail" class="panel detail hidden"></div>
+</section>
 
-    <section id="practiceView" class="view" data-view="practice">
-      <div class="page-title"><div><div class="eyebrow">PRACTICE</div><h2>Skill drills</h2><p>Quick checks before you move to interview mode.</p></div></div>
-      <div class="panel practice-card"><div class="practice-top"><span class="pill purple" id="practiceTopic">SQL</span><span class="tag" id="practiceIndex">1 / 10</span></div><h3 id="practiceQuestion">Question</h3><div id="practiceOptions" class="answers"></div><div id="practiceFeedback" class="feedback hidden"></div><div class="practice-actions"><button id="practiceNext" class="btn primary" type="button">Choose an answer</button></div></div>
-    </section>
+<section id="practiceView" class="view">
+  <div class="page-title"><div><div class="eyebrow">PRACTICE</div><h2>Skill drills</h2><p>10 quick checks built around your target role.</p></div><span class="pill purple" id="practiceIndex">1 / 10</span></div>
+  <div class="panel practice-card">
+    <div class="practice-top"><span class="pill blue" id="practiceTopic">SQL</span><span class="tag">Recall</span></div>
+    <h3 id="practiceQuestion">Question</h3>
+    <div id="practiceOptions" class="answers"></div>
+    <div id="practiceFeedback" class="feedback hidden"></div>
+    <div class="actions"><button id="practiceNext" class="btn primary" type="button">Choose an answer</button></div>
+  </div>
+</section>
 
-    <section id="interviewView" class="view" data-view="interview">
-      <div class="page-title"><div><div class="eyebrow">INTERVIEW MODE</div><h2>Talk like an analyst</h2><p>Answer in your own words. The app checks for the important concepts.</p></div><span class="pill gold">Technical</span></div>
-      <div class="panel interview-card"><div class="interview-meta"><span id="interviewRound">ROUND 1 · TECHNICAL</span><span id="interviewCount">1 / 8</span></div><h3 id="interviewQuestion">Loading…</h3><textarea id="interviewAnswer" rows="7" placeholder="Type your answer here…"></textarea><div class="interview-actions"><button id="checkAnswer" class="btn primary" type="button">Check my answer</button><button id="speakTip" class="btn ghost" type="button">Answer tips</button></div><div id="interviewFeedback" class="feedback hidden"></div></div>
-    </section>
+<section id="interviewView" class="view">
+  <div class="page-title"><div><div class="eyebrow">INTERVIEW MODE</div><h2>Talk like an analyst</h2><p>Answer in your own words. The coach checks important concepts.</p></div><span class="pill gold">Technical + HR</span></div>
+  <div class="panel interview-card">
+    <div class="interview-meta"><span id="interviewRound">ROUND 1 · TECHNICAL</span><span id="interviewIndex">1 / 8</span></div>
+    <h3 id="interviewQuestion">Loading…</h3>
+    <textarea id="interviewAnswer" rows="7" placeholder="Type your answer here…"></textarea>
+    <div class="actions"><button id="checkAnswer" class="btn primary" type="button">Check my answer</button><button id="answerTips" class="btn ghost" type="button">Answer tips</button></div>
+    <div id="interviewFeedback" class="feedback hidden"></div>
+  </div>
+</section>
 
-    <section id="sqlView" class="view" data-view="sql">
-      <div class="page-title"><div><div class="eyebrow">SQL LAB</div><h2>Practice like the job</h2><p>Small business datasets with instant checks.</p></div><span class="pill blue">Local runner</span></div>
-      <div class="panel sql-card"><div class="sql-head"><div><strong id="sqlTitle">Revenue by customer</strong><p id="sqlPrompt">Write a query that returns customer name and total sales, highest sales first.</p></div><button id="loadSqlHint" class="text-btn" type="button">Hint</button></div><div class="sql-grid"><div><div class="table-title">customers</div><div id="customersTable" class="table-wrap"></div></div><div><div class="table-title">orders</div><div id="ordersTable" class="table-wrap"></div></div></div><textarea id="sqlEditor" rows="8" spellcheck="false">SELECT customer_name, SUM(amount) AS total_sales FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customer_name ORDER BY total_sales DESC;</textarea><div class="sql-actions"><button id="runSql" class="btn primary" type="button">Run query</button><button id="resetSql" class="btn ghost" type="button">Reset</button></div><div id="sqlResult" class="sql-result"></div></div>
-    </section>
+<section id="sqlView" class="view">
+  <div class="page-title"><div><div class="eyebrow">SQL LAB</div><h2>Practice like the job</h2><p>Small business dataset with instant pattern checks.</p></div><span class="pill blue">Local runner</span></div>
+  <div class="panel sql-card">
+    <div class="sql-head"><div><strong>Revenue by customer</strong><p>Return customer name and total sales, highest sales first.</p></div><button id="sqlHint" class="text-btn" type="button">Hint</button></div>
+    <div class="sql-grid"><div><div class="table-title">customers</div><div id="customersTable" class="table-wrap"></div></div><div><div class="table-title">orders</div><div id="ordersTable" class="table-wrap"></div></div></div>
+    <textarea id="sqlEditor" rows="7" spellcheck="false">SELECT customer_name, SUM(amount) AS total_sales FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customer_name ORDER BY total_sales DESC;</textarea>
+    <div class="actions"><button id="runSql" class="btn primary" type="button">Run query</button><button id="resetSql" class="btn ghost" type="button">Reset</button></div>
+    <div id="sqlResult"></div>
+  </div>
+</section>
 
-    <section id="powerbiView" class="view" data-view="powerbi">
-      <div class="page-title"><div><div class="eyebrow">POWER BI LAB</div><h2>Choose the right visual</h2><p>Business thinking first. Visual second.</p></div></div>
-      <div id="pbiCase" class="panel case-card"></div>
-    </section>
+<section id="powerbiView" class="view">
+  <div class="page-title"><div><div class="eyebrow">POWER BI LAB</div><h2>Choose the right visual</h2><p>Business question first. Visual second.</p></div></div>
+  <div id="pbiCase" class="panel case-card"></div>
+</section>
 
-    <section id="projectsView" class="view" data-view="projects">
-      <div class="page-title"><div><div class="eyebrow">PROJECT LAB</div><h2>Build + explain</h2><p>Turn your resume projects into interview-ready stories.</p></div></div>
-      <div id="projectList" class="stack"></div>
-      <div id="projectDetail" class="panel detail hidden"></div>
-    </section>
+<section id="projectsView" class="view">
+  <div class="page-title"><div><div class="eyebrow">PROJECT LAB</div><h2>Build + explain</h2><p>Turn your resume projects into interview-ready stories.</p></div></div>
+  <div id="projectList" class="stack"></div>
+  <div id="projectDetail" class="panel detail hidden"></div>
+</section>
 
-    <section id="revisionView" class="view" data-view="revision">
-      <div class="page-title"><div><div class="eyebrow">SMART REVISION</div><h2>Recall, don't reread</h2><p>Short recall sessions keep weak concepts visible.</p></div></div>
-      <div id="revisionList" class="stack"></div>
-    </section>
+<section id="revisionView" class="view">
+  <div class="page-title"><div><div class="eyebrow">SMART REVISION</div><h2>Recall, don't reread</h2><p>Short recall sessions keep important concepts visible.</p></div></div>
+  <div id="revisionList" class="stack"></div>
+</section>
 
-    <section id="jobsView" class="view" data-view="jobs">
-      <div class="page-title"><div><div class="eyebrow">JOB COMMAND CENTER</div><h2>Apply with context</h2><p>Track applications and compare job descriptions with your resume.</p></div><button id="addJobBtn" class="btn primary" type="button">+ Add job</button></div>
-      <div class="job-tabs"><button class="job-tab active" data-jobtab="tracker" type="button">Tracker</button><button class="job-tab" data-jobtab="matcher" type="button">Job matcher</button></div>
-      <div id="trackerTab" class="job-tab-content"><div id="jobSummary" class="job-summary panel"></div><div id="jobList" class="stack"></div></div>
-      <div id="matcherTab" class="job-tab-content hidden"><div class="panel matcher"><div class="eyebrow">PASTE A JOB DESCRIPTION</div><textarea id="jdInput" rows="9" placeholder="Paste the role description here…"></textarea><button id="analyzeJob" class="btn primary" type="button">Analyze match</button><div id="matchResult" class="match-result"></div></div></div>
-    </section>
+<section id="jobsView" class="view">
+  <div class="page-title"><div><div class="eyebrow">JOB COMMAND CENTER</div><h2>Apply with context</h2><p>Track roles and compare a job description with your resume skills.</p></div><button id="addJobBtn" class="btn primary" type="button">+ Add job</button></div>
+  <div class="job-tabs"><button class="job-tab active" data-jobtab="tracker" type="button">Tracker</button><button class="job-tab" data-jobtab="matcher" type="button">Job matcher</button></div>
+  <div id="trackerTab"><div id="jobSummary" class="job-summary panel"></div><div id="jobList" class="stack"></div></div>
+  <div id="matcherTab" class="hidden"><div class="panel" style="padding:16px"><div class="eyebrow">PASTE A JOB DESCRIPTION</div><textarea id="jdInput" rows="9" placeholder="Paste the role description here…"></textarea><button id="analyzeJob" class="btn primary full" type="button" style="margin-top:10px">Analyze match</button><div id="matchResult"></div></div></div>
+</section>
 
-    <section id="profileView" class="view" data-view="profile">
-      <div class="page-title"><div><div class="eyebrow">PROFILE</div><h2>Your analyst profile</h2><p>Everything in one place for your learning and job journey.</p></div></div>
-      <div class="profile-hero panel"><div class="avatar">VS</div><div><h3>Vikas Sharma</h3><p>Data Analyst · 1+ year experience</p></div><span class="pill purple">Data Analyst</span></div>
-      <div class="panel"><div class="eyebrow">CORE STACK</div><div id="profileSkills" class="chips"></div></div>
-      <div class="panel"><div class="eyebrow">EXPERIENCE</div><div class="timeline"><div><strong>Data Analyst · Analyticore</strong><span>Nov 2025 – Present</span><p>Birst dashboards, SQL reporting, validation, ETL support, Star Schema and stakeholder requirements.</p></div><div><strong>Data Analytics Intern · Sun system</strong><span>Apr 2025 – Sep 2025</span><p>Power BI dashboards, Python, SQL, Advanced Excel and KPI reporting.</p></div></div></div>
-      <div class="panel"><div class="eyebrow">RESUME PROJECTS</div><div id="profileProjects" class="stack tight"></div></div>
-    </section>
-  </main>
+<section id="profileView" class="view">
+  <div class="page-title"><div><div class="eyebrow">PROFILE</div><h2>Your analyst profile</h2><p>Resume-backed skills, experience and projects.</p></div></div>
+  <div class="profile-hero panel"><div class="avatar">VS</div><div><h3>Vikas Sharma</h3><p>Data Analyst · 1+ year experience</p></div><span class="pill purple">Data Analyst</span></div>
+  <div class="panel" style="padding:15px;margin-top:10px"><div class="eyebrow">CORE STACK</div><div id="profileSkills" class="chips"></div></div>
+  <div class="panel" style="padding:15px;margin-top:10px"><div class="eyebrow">EXPERIENCE</div><div class="timeline"><div><strong>Data Analyst · Analyticore</strong><span>Nov 2025 – Present</span><p>SQL reporting, Birst dashboards, data validation, ETL support, Star Schema and stakeholder requirements.</p></div><div><strong>Data Analytics Intern · Sun system</strong><span>Apr 2025 – Sep 2025</span><p>Power BI dashboards, Python, SQL, Advanced Excel and KPI reporting.</p></div></div></div>
+  <div class="panel" style="padding:15px;margin-top:10px"><div class="eyebrow">RESUME PROJECTS</div><div id="profileProjects" class="stack"></div></div>
+</section>
+</main>
 
-  <nav class="bottom-nav" aria-label="Primary navigation">
-    <button class="nav-item active" data-go="home" type="button"><b>⌂</b><span>Home</span></button>
-    <button class="nav-item" data-go="learn" type="button"><b>▣</b><span>Learn</span></button>
-    <button class="nav-item" data-go="practice" type="button"><b>✓</b><span>Practice</span></button>
-    <button class="nav-item" data-go="interview" type="button"><b>◉</b><span>Interview</span></button>
-    <button class="nav-item" data-go="jobs" type="button"><b>➜</b><span>Jobs</span></button>
-  </nav>
+<nav class="bottom-nav" aria-label="Primary navigation">
+  <button class="nav-item active" data-go="home" type="button"><b>⌂</b><span>Home</span></button>
+  <button class="nav-item" data-go="learn" type="button"><b>▣</b><span>Learn</span></button>
+  <button class="nav-item" data-go="practice" type="button"><b>✓</b><span>Practice</span></button>
+  <button class="nav-item" data-go="interview" type="button"><b>◉</b><span>Interview</span></button>
+  <button class="nav-item" data-go="jobs" type="button"><b>➜</b><span>Jobs</span></button>
+</nav>
 
-  <div id="moreSheet" class="sheet-backdrop hidden"><div class="sheet panel"><div class="sheet-head"><h3>More</h3><button id="closeSheet" class="icon-only ghost" type="button">×</button></div><div class="more-grid"><button data-go="sql" type="button">SQL Lab<span>Queries + checks</span></button><button data-go="powerbi" type="button">Power BI Lab<span>Business cases</span></button><button data-go="projects" type="button">Project Lab<span>Build + explain</span></button><button data-go="revision" type="button">Revision<span>Recall weak topics</span></button><button data-go="profile" type="button">Profile<span>Your resume base</span></button></div></div></div>
-  <button id="moreFloating" class="more-fab" type="button" aria-label="More tools">+</button>
+<div id="moreSheet" class="sheet-backdrop hidden"><div class="sheet panel"><div class="sheet-head"><h3>More tools</h3><button id="closeSheet" class="icon-btn" type="button">×</button></div><div class="more-grid">
+  <button data-go="sql" type="button">SQL Lab<span>Queries + instant checks</span></button>
+  <button data-go="powerbi" type="button">Power BI Lab<span>Business cases</span></button>
+  <button data-go="projects" type="button">Project Lab<span>Build + explain</span></button>
+  <button data-go="revision" type="button">Revision<span>Recall weak topics</span></button>
+  <button data-go="profile" type="button">Profile<span>Your resume base</span></button>
+</div></div></div>
+<button id="moreFloating" class="icon-btn" style="position:fixed;right:14px;bottom:78px;z-index:29" type="button" aria-label="More tools">+</button>
 
-  <div id="jobModal" class="modal hidden"><div class="modal-box panel"><div class="modal-head"><h3>Add application</h3><button id="closeJobModal" class="icon-only ghost" type="button">×</button></div><label>Company<input id="jobCompany" placeholder="e.g. Deloitte"></label><label>Role<input id="jobRole" placeholder="e.g. Data Analyst"></label><label>Status<select id="jobStatus"><option>Saved</option><option>Applied</option><option>Interview</option><option>Rejected</option><option>Selected</option></select></label><label>Notes<textarea id="jobNotes" rows="3" placeholder="Skills, interview notes, follow-up…"></textarea></label><button id="saveJob" class="btn primary full" type="button">Save application</button></div></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="data/data.js"></script><script src="assets/app.js"></script>
-</body></html>
+<div id="jobModal" class="modal hidden"><div class="modal-box panel"><div class="modal-head"><h3>Add application</h3><button id="closeJobModal" class="icon-btn" type="button">×</button></div>
+<label>Company<input id="jobCompany" placeholder="e.g. Deloitte"></label><label>Role<input id="jobRole" placeholder="e.g. Data Analyst"></label>
+<label>Status<select id="jobStatus"><option>Saved</option><option>Applied</option><option>Interview</option><option>Rejected</option><option>Selected</option></select></label>
+<label>Notes<textarea id="jobNotes" rows="3" placeholder="Skills, interview notes, follow-up…"></textarea></label>
+<button id="saveJob" class="btn primary full" type="button">Save application</button></div></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{
+"use strict";
+const D={
+skills:["SQL","MySQL","Power BI","Birst BI","Python","Pandas","NumPy","Advanced Excel","Data Cleaning","Data Validation","Dashboard Development","KPI Reporting","ETL Concepts","Data Warehousing","Star Schema","Fact & Dimension Modeling","Jupyter Notebook","Git","GitHub"],
+lessons:[
+{id:"sql",tag:"SQL",title:"SQL JOINs",time:"20 min",desc:"Connect tables and explain the business effect of the join type.",body:"Start by deciding which table must be preserved. INNER JOIN keeps matching rows. LEFT JOIN keeps every row from the left table and adds matches from the right. Then validate row counts and totals.",ex:"SELECT c.customer_name, SUM(o.amount) AS total_sales\\nFROM customers c\\nLEFT JOIN orders o ON o.customer_id=c.id\\nGROUP BY c.customer_name\\nORDER BY total_sales DESC;",recall:"When would you choose LEFT JOIN instead of INNER JOIN?"},
+{id:"pbi",tag:"Power BI",title:"KPI-first dashboard design",time:"20 min",desc:"Start with the decision, then choose the visual.",body:"Put 3–5 core KPIs first. Follow them with trend, segment and drill-down views. Keep labels, units and date logic consistent, and reconcile headline totals to a trusted source.",ex:"Revenue | Orders | Average Order Value | Conversion Rate",recall:"What should be defined before adding charts to a stakeholder dashboard?"},
+{id:"python",tag:"Python",title:"Pandas data cleaning",time:"25 min",desc:"Turn messy rows into analysis-ready data with a repeatable flow.",body:"Use: inspect → missing/duplicate values → standardize data types → clean categories → validate counts and totals. The validation step is part of the analysis.",ex:"df.info()\\ndf.isna().sum()\\ndf.duplicated().sum()",recall:"Name three checks you would perform after cleaning a dataset."},
+{id:"model",tag:"Data Warehousing",title:"Star Schema",time:"20 min",desc:"Explain fact and dimension tables with confidence.",body:"A fact table stores measurable business events at a defined grain. Dimensions describe those events. In an interview, state the grain first, then explain keys and measures.",ex:"FactSales → DateKey, CustomerKey, ProductKey, Quantity, SalesAmount",recall:"What does the grain of a fact table tell you?"},
+{id:"quality",tag:"Data Quality",title:"Validation checks",time:"15 min",desc:"Protect the trustworthiness of reporting.",body:"Check duplicates, nulls in key fields, invalid dates, allowed categories, row counts and source-to-report reconciliation.",ex:"1. Duplicate business keys\\n2. Null keys\\n3. Invalid dates\\n4. Total mismatch",recall:"Why is validation important before publishing a KPI dashboard?"}
+],
+practice:[
+{topic:"SQL",q:"Which JOIN keeps every row from the left table?",o:["INNER JOIN","LEFT JOIN","RIGHT JOIN","CROSS JOIN"],c:1,w:"LEFT JOIN preserves every left-table row and adds matching data from the right."},
+{topic:"Modeling",q:"What should you define before designing a fact table?",o:["Font size","Grain","Dashboard theme","Company name"],c:1,w:"Grain defines exactly what one fact row represents."},
+{topic:"Python",q:"Which pandas expression counts missing values per column?",o:["df.shape","df.isna().sum()","df.describe()","df.head()"],c:1,w:"isna() identifies missing values and sum() counts them by column."},
+{topic:"Power BI",q:"A KPI-first dashboard should start with:",o:["20 decorative charts","Core business KPIs","A logo","A pie chart"],c:1,w:"The KPI layer keeps the dashboard decision-focused."},
+{topic:"Data Quality",q:"Which is a useful validation check?",o:["Changing colors","Checking duplicate keys","Adding pages","Renaming a column"],c:1,w:"Duplicate-key checks catch common data-integrity problems."},
+{topic:"SQL",q:"Why can a JOIN create duplicate-looking rows?",o:["SQL is slow","One-to-many relationships","SELECT is uppercase","Tables have headers"],c:1,w:"A one-to-many relationship can multiply rows when the join key matches several records."},
+{topic:"Python",q:"What is a sensible response to missing values?",o:["Ignore them always","Choose treatment based on business meaning","Delete the database","Change chart colors"],c:1,w:"Treat missing values based on business meaning: investigate, flag, impute or exclude when justified."},
+{topic:"Power BI",q:"What should you validate before trusting a KPI?",o:["Font","Source and calculation logic","Icon","Page number"],c:1,w:"A KPI needs a trusted source, clear definition and correct calculation."},
+{topic:"Modeling",q:"What does a dimension table usually contain?",o:["Only totals","Descriptive attributes","Dashboard colors","SQL errors"],c:1,w:"Dimensions describe entities such as customer, product or date."},
+{topic:"SQL",q:"Which clause sorts a result set?",o:["GROUP BY","ORDER BY","WHERE BY","SORT TABLE"],c:1,w:"ORDER BY sorts the returned rows."}
+],
+interview:[
+{round:"Technical",q:"Explain INNER JOIN vs LEFT JOIN and give a business example.",k:["inner","left","match","preserve","example"],tips:"Define both joins, say which table is preserved, then give one business example."},
+{round:"Project",q:"Explain your Customer Sales Analytics project in 60 seconds.",k:["problem","sql","kpi","dashboard","insight"],tips:"Use problem → data → SQL/Power BI → KPI → insight."},
+{round:"Technical",q:"What is the grain of a fact table, and why does it matter?",k:["grain","row","measure","aggregation","fact"],tips:"Start with what one row represents and why this protects aggregation."},
+{round:"Power BI",q:"How would you design a dashboard to explain why sales changed?",k:["kpi","trend","segment","drill","business"],tips:"Lead with KPIs, then trend and segment/drill-down views."},
+{round:"Data Quality",q:"How do you validate a report before sharing it?",k:["duplicate","null","reconcile","source","row"],tips:"Mention key-field checks plus source-to-report reconciliation."},
+{round:"Python",q:"Describe a practical Pandas data-cleaning workflow.",k:["inspect","missing","duplicate","type","validate"],tips:"Use inspect → missing/duplicates → types → categories → validation."},
+{round:"Behavioral",q:"Tell me about a time you worked with a stakeholder on reporting requirements.",k:["requirement","stakeholder","clarify","deliver","feedback"],tips:"Use situation → requirement → clarification → delivery → feedback."},
+{round:"Technical",q:"What are ETL concepts and where do they appear in analytics work?",k:["extract","transform","load","source","warehouse"],tips:"Explain the three stages and connect them to reporting/data processing."}
+],
+pbi:[
+{title:"Sales dropped 12% month over month",context:"Leadership wants to see when the drop happened and then drill into the cause.",c:["Line chart + KPI + drill-down","Pie chart only","Gauge only"],a:0,w:"A trend shows when the decline happened; KPI gives magnitude; drill-down helps find drivers."},
+{title:"Compare revenue across regions",context:"The user wants an easy comparison and needs the strongest and weakest regions.",c:["Sorted bar chart","Donut chart with 40 regions","Gauge"],a:0,w:"A sorted bar chart supports clear category comparison and ranking."},
+{title:"Show daily transactions for a month",context:"The key question is the pattern over time.",c:["Line chart","Pie chart","Single number card"],a:0,w:"A line chart makes daily movement and peaks visible."}
+],
+projects:[
+{id:"sales",title:"Customer Sales Analytics Dashboard",tools:"Birst BI · SQL · Power BI",summary:"KPI-driven business reporting and insights.",steps:["Define business questions","Clean and validate data","Write SQL reporting query","Build KPI layer","Add trend and segment views","Prepare 60-second explanation"],pitch:"I built a Customer Sales Analytics dashboard to turn sales data into KPI-driven business insights. I used SQL for reporting and Power BI/Birst BI for visualization, validated the data, and structured the dashboard around business questions."},
+{id:"credit",title:"Credit Risk & Loan Analytics Dashboard",tools:"Power BI · SQL · Excel",summary:"Lending analysis and KPI reporting.",steps:["Define lending KPIs","Inspect loan data","Clean and validate","Analyze risk segments","Build executive dashboard","Explain key drivers"],pitch:"I analyzed lending data and built KPI reporting for credit and loan analytics. I combined SQL/Excel analysis with Power BI visuals to identify useful patterns and communicate results clearly."},
+{id:"salesperf",title:"Sales Performance Dashboard",tools:"Power BI · SQL",summary:"Automated reporting and sales trend tracking.",steps:["Define sales KPIs","Create reporting query","Validate totals","Build interactive report","Track trends","Explain automation"],pitch:"I built a Sales Performance dashboard to automate reporting and track sales trends. I used SQL for data preparation and Power BI for an interactive KPI-focused view."},
+{id:"power",title:"Power Consumption Analysis",tools:"Python · SQL",summary:"Energy usage pattern analysis.",steps:["Frame the business question","Inspect usage data","Clean data in Python","Analyze patterns","Validate results","Present insights"],pitch:"I analyzed power consumption patterns using Python and SQL, focusing on cleaning, analysis and clear analytical insights from usage data."}
+],
+sql:{customers:[{id:1,name:"Acme Foods"},{id:2,name:"Northstar Retail"},{id:3,name:"Urban Mart"},{id:4,name:"Vertex Labs"}],orders:[{id:101,customer_id:1,amount:42000},{id:102,customer_id:1,amount:18000},{id:103,customer_id:2,amount:33000},{id:104,customer_id:3,amount:25000},{id:105,customer_id:2,amount:12000},{id:106,customer_id:4,amount:9000}]},
+sprint:[
+"SQL: SELECT, WHERE, GROUP BY, ORDER BY",
+"SQL: JOINs + NULLs + CASE",
+"SQL: CTEs + subqueries",
+"SQL: Window functions",
+"Power BI: Power Query + cleaning",
+"Power BI: Relationships + Star Schema",
+"Power BI: Measures + DAX basics",
+"Power BI: Time intelligence + KPIs",
+"Python: Pandas cleaning + EDA",
+"Projects: Customer Sales story",
+"Projects: Credit Risk + Sales Performance",
+"Interview: Technical drills",
+"Interview: Project + HR answers",
+"Applications: 8 quality applications + follow-ups"
+]
+};
+const KEY="vikas-career-pro-v3";
+const defaultState={day:1,doneLessons:[],practiceAnswers:{},practiceIndex:0,interviewAnswers:{},interviewIndex:0,pbiIndex:0,projects:{},revision:{},jobs:[]};
+let state=load();
+function load(){try{return Object.assign({},defaultState,JSON.parse(localStorage.getItem(KEY)||"null")||{})}catch(e){return {...defaultState}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));renderStats()}
+function $(id){return document.getElementById(id)}
+function esc(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove("show"),1800)}
+function nav(id){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.dataset.view===id));document.querySelectorAll(".nav-item").forEach(v=>v.classList.toggle("active",v.dataset.go===id));if(id==="learn")renderLessons();if(id==="practice")renderPractice();if(id==="interview")renderInterview();if(id==="sql")renderSql();if(id==="powerbi")renderPbi();if(id==="projects")renderProjects();if(id==="revision")renderRevision();if(id==="jobs")renderJobs();if(id==="profile")renderProfile();scrollTo({top:0,behavior:"smooth"});$("moreSheet").classList.add("hidden")}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>nav(b.dataset.go)));
+function overallReady(){const a=state.doneLessons.length/5*50;const p=Math.min(30,Object.keys(state.practiceAnswers).length/10*30);const i=Math.min(20,Object.keys(state.interviewAnswers).length/8*20);return Math.round(a+p+i)}
+function renderStats(){
+ const r=overallReady();$("heroProgress").textContent=r+"%";const deg=Math.round(r*3.6);$("heroRing").style.background=`radial-gradient(circle,#0b1120 57%,transparent 58%),conic-gradient(var(--accent) ${deg}deg,rgba(255,255,255,.08) ${deg}deg)`;
+ $("lessonStat")&&($("lessonStat").textContent=state.doneLessons.length+"/5");$("streakStat").textContent=Math.max(1,state.day)+" day";$("dayStat").textContent="Day "+Math.min(14,state.day);$("scoreStat").textContent=practiceScore()+"%";$("jobStat").textContent=state.jobs.length;
+ $("missionBar").style.width=(state.doneLessons.includes("sql")?100:0)+"%";
+}
+function practiceScore(){const vals=Object.values(state.practiceAnswers);return vals.length?Math.round(vals.filter(Boolean).length/vals.length*100):0}
+function renderRoadmap(){
+ const scores={SQL:state.doneLessons.includes("sql")?100:20,PowerBI:state.doneLessons.includes("pbi")?100:20,Python:state.doneLessons.includes("python")?100:20,Modeling:state.doneLessons.includes("model")?100:20,"Data Quality":state.doneLessons.includes("quality")?100:20};
+ $("roadmapHome").innerHTML=Object.entries(scores).map(([n,v])=>`<div class="road panel"><div><strong>${n}</strong><small>${v>=100?"Lesson complete":"Build foundation"}</small><div class="bar"><i style="width:${v}%"></i></div></div><span class="pill">${v}%</span></div>`).join("");
+}
+function renderLessons(){
+ $("lessonList").innerHTML=D.lessons.map(l=>`<button class="lesson panel" data-lesson="${l.id}" type="button"><div><span class="pill ${l.tag==="SQL"?"blue":"purple"}">${l.tag}</span><h3>${l.title}</h3><p>${l.desc}</p></div><span class="tag">${state.doneLessons.includes(l.id)?"Done":"Start"} · ${l.time}</span></button>`).join("");
+ document.querySelectorAll("[data-lesson]").forEach(b=>b.onclick=()=>showLesson(b.dataset.lesson));
+}
+function showLesson(id){
+ const l=D.lessons.find(x=>x.id===id),d=$("lessonDetail");d.classList.remove("hidden");d.innerHTML=`<div class="eyebrow">${l.tag}</div><h3>${l.title}</h3><p>${l.body}</p><div class="example">${esc(l.ex)}</div><p><b>Recall:</b> ${l.recall}</p><button id="completeLesson" class="btn primary full" type="button">${state.doneLessons.includes(l.id)?"Completed ✓":"Mark lesson complete"}</button>`;
+ $("completeLesson").onclick=()=>{if(!state.doneLessons.includes(l.id))state.doneLessons.push(l.id);state.revision[l.id]=false;save();renderLessons();renderRoadmap();d.classList.add("hidden");toast("Lesson saved ✓");}
+}
+function renderPractice(){
+ const i=state.practiceIndex%D.practice.length,q=D.practice[i],ans=state.practiceAnswers[i];$("practiceIndex").textContent=(i+1)+" / "+D.practice.length;$("practiceTopic").textContent=q.topic;$("practiceQuestion").textContent=q.q;
+ $("practiceOptions").innerHTML=q.o.map((x,n)=>`<button class="answer ${ans!==undefined?(n===q.c?"correct":n===ans?"wrong":""):""}" data-op="${n}" type="button" ${ans!==undefined?"disabled":""}>${esc(x)}</button>`).join("");
+ const f=$("practiceFeedback");if(ans===undefined){f.classList.add("hidden");$("practiceNext").textContent="Choose an answer"}else{f.className="feedback "+(ans?"good":"bad");f.textContent=(ans===q.c?"Correct ✓ ":"Not quite. ")+q.w;$("practiceNext").textContent="Next question";}
+ document.querySelectorAll("[data-op]").forEach(b=>b.onclick=()=>{if(state.practiceAnswers[i]!==undefined)return;state.practiceAnswers[i]=Number(b.dataset.op)===q.c;state.practiceAnswers["_choice_"+i]=Number(b.dataset.op);save();renderPractice()});
+ $("practiceNext").onclick=()=>{if(state.practiceAnswers[i]===undefined)return;state.practiceIndex=(i+1)%D.practice.length;save();renderPractice()}
+}
+function renderInterview(){
+ const i=state.interviewIndex%D.interview.length,q=D.interview[i],saved=state.interviewAnswers[i];$("interviewRound").textContent="ROUND "+(i+1)+" · "+q.round.toUpperCase();$("interviewIndex").textContent=(i+1)+" / "+D.interview.length;$("interviewQuestion").textContent=q.q;$("interviewAnswer").value=saved?.text||"";
+ const f=$("interviewFeedback");if(saved){f.className="feedback "+(saved.score>=70?"good":saved.score>=45?"warn":"bad");f.innerHTML=`<b>${saved.score}% concept coverage</b><br>${saved.note}<br><br><b>Coach tip:</b> ${q.tips}`;$("checkAnswer").textContent="Re-check answer"}else{f.classList.add("hidden");$("checkAnswer").textContent="Check my answer"} 
+ $("checkAnswer").onclick=()=>{const text=$("interviewAnswer").value.trim().toLowerCase();if(!text){toast("Type an answer first");return}const hit=q.k.filter(k=>text.includes(k)).length;const score=Math.round(hit/q.k.length*100);state.interviewAnswers[i]={text:$("interviewAnswer").value.trim(),score,note:score>=70?"Good concept coverage. Add one concrete business example or outcome where possible.":score>=45?"You have some key concepts. Add the missing ideas and make the answer more structured.":"Start with a simple definition, then explain your example and the business impact."};save();renderInterview();toast("Answer checked ✓")};
+ $("answerTips").onclick=()=>toast(q.tips);
+}
+function renderSql(){
+ renderTable("customersTable",D.sql.customers);renderTable("ordersTable",D.sql.orders);
+ $("sqlHint").onclick=()=>toast("Hint: SELECT + JOIN + SUM + GROUP BY + ORDER BY");
+ $("resetSql").onclick=()=>{$("sqlEditor").value="SELECT customer_name, SUM(amount) AS total_sales FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customer_name ORDER BY total_sales DESC;";$("sqlResult").innerHTML=""};
+ $("runSql").onclick=runSql;
+}
+function renderTable(id,rows){const h=Object.keys(rows[0]);$(id).innerHTML="<table><thead><tr>"+h.map(x=>`<th>${esc(x)}</th>`).join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+h.map(x=>`<td>${esc(r[x])}</td>`).join("")+"</tr>").join("")+"</tbody></table>"}
+function runSql(){const q=$("sqlEditor").value.toLowerCase().replace(/\s+/g," ").trim();const need=["select","join","sum","group by","order by"];const ok=need.every(x=>q.includes(x))&&q.includes("customer");if(!ok){$("sqlResult").innerHTML='<div class="result-bad"><b>Needs work.</b><br>For this challenge include SELECT, JOIN, SUM, GROUP BY and ORDER BY, and return customer-level sales.</div>';return}const totals={};D.sql.customers.forEach(c=>totals[c.name]=0);D.sql.orders.forEach(o=>{const c=D.sql.customers.find(x=>x.id===o.customer_id);if(c)totals[c.name]+=o.amount});const rows=Object.entries(totals).sort((a,b)=>b[1]-a[1]);$("sqlResult").innerHTML='<div class="result-good"><b>Query pattern accepted ✓</b><div class="table-wrap" style="margin-top:8px"><table><thead><tr><th>customer</th><th>total_sales</th></tr></thead><tbody>'+rows.map(r=>`<tr><td>${esc(r[0])}</td><td>₹${Number(r[1]).toLocaleString("en-IN")}</td></tr>`).join("")+"</tbody></table></div></div>";toast("SQL challenge passed ✓")}
+function renderPbi(){const i=state.pbiIndex%D.pbi.length,c=D.pbi[i];$("pbiCase").innerHTML=`<div class="eyebrow">CASE ${i+1} / ${D.pbi.length}</div><h3>${c.title}</h3><p>${c.context}</p><div class="case-choices">${c.c.map((x,n)=>`<button class="case-choice" data-c="${n}" type="button">${esc(x)}</button>`).join("")}</div><div id="caseFeedback"></div>`;document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{const n=+b.dataset.c;document.querySelectorAll("[data-c]").forEach(x=>x.disabled=true);b.classList.add(n===c.a?"correct":"wrong");$("caseFeedback").innerHTML=`<div class="feedback ${n===c.a?"good":"bad"}">${n===c.a?"Good call ✓ ":"Not the best fit. "}${c.w}<br><button id="nextCase" class="btn primary small" style="margin-top:8px" type="button">Next case</button></div>`;$("nextCase").onclick=()=>{state.pbiIndex=(i+1)%D.pbi.length;save();renderPbi()}})}
+function renderProjects(){const list=$("projectList");list.innerHTML=D.projects.map(p=>{const done=state.projects[p.id]?.stepsDone?.length||0;return `<div class="project panel"><div class="project-top"><div><h3>${p.title}</h3><div class="project-tools">${p.tools}</div></div><span class="pill">${done}/${p.steps.length}</span></div><p>${p.summary}</p><div class="steps">${p.steps.map((s,i)=>`<div class="step ${i<done?"done":""}"><span class="dot">${i<done?"✓":i+1}</span><span>${esc(s)}</span></div>`).join("")}</div><div class="project-actions"><button class="btn small ghost" data-open-project="${p.id}" type="button">Open lab</button><button class="btn small primary" data-next-project="${p.id}" type="button">${done===p.steps.length?"Replay":"Complete next"}</button></div></div>`}).join("");list.querySelectorAll("[data-open-project]").forEach(b=>b.onclick=()=>showProject(b.dataset.openProject));list.querySelectorAll("[data-next-project]").forEach(b=>b.onclick=()=>nextProject(b.dataset.nextProject))}
+function nextProject(id){const p=D.projects.find(x=>x.id===id),s=state.projects[id]||{stepsDone:[]};if(s.stepsDone.length<p.steps.length)s.stepsDone.push(s.stepsDone.length);else toast("Project complete — practice the pitch");state.projects[id]=s;save();renderProjects();toast(s.stepsDone.length===p.steps.length?"Project lab complete ✓":"Step complete ✓")}
+function showProject(id){const p=D.projects.find(x=>x.id===id),d=$("projectDetail");d.classList.remove("hidden");d.innerHTML=`<div class="eyebrow">${p.tools}</div><h3>${p.title}</h3><p>${p.summary}</p><div class="example">${esc(p.pitch)}</div><button id="closeProject" class="btn primary full" type="button">Close lab</button>`;$("closeProject").onclick=()=>d.classList.add("hidden")}
+function renderRevision(){const due=D.lessons.filter(l=>!state.revision[l.id]);$("revisionList").innerHTML=(due.length?due:D.lessons).map(l=>`<div class="revision panel"><span class="pill ${l.tag==="SQL"?"blue":"purple"}">${l.tag}</span><h3>${l.title}</h3><p>${l.recall}</p><button class="btn small primary" data-revise="${l.id}" style="margin-top:10px" type="button">Mark recalled</button></div>`).join("");document.querySelectorAll("[data-revise]").forEach(b=>b.onclick=()=>{state.revision[b.dataset.revise]=true;save();renderRevision();toast("Recall saved ✓")})}
+function renderJobs(){const c={Saved:0,Applied:0,Interview:0};state.jobs.forEach(j=>{if(c[j.status]!==undefined)c[j.status]++});$("jobSummary").innerHTML=`<div><strong>${c.Saved}</strong><span>Saved</span></div><div><strong>${c.Applied}</strong><span>Applied</span></div><div><strong>${c.Interview}</strong><span>Interview</span></div>`;const l=$("jobList");l.innerHTML=state.jobs.length?state.jobs.map((j,i)=>`<div class="job panel"><div class="job-top"><div><h3>${esc(j.role)}</h3><p>${esc(j.company)}</p></div><span class="pill">${esc(j.status)}</span></div><p>${esc(j.notes||"No notes")}</p><div class="job-actions"><select data-status="${i}"><option ${j.status==="Saved"?"selected":""}>Saved</option><option ${j.status==="Applied"?"selected":""}>Applied</option><option ${j.status==="Interview"?"selected":""}>Interview</option><option ${j.status==="Rejected"?"selected":""}>Rejected</option><option ${j.status==="Selected"?"selected":""}>Selected</option></select><button class="btn small ghost" data-delete="${i}" type="button">Delete</button></div></div>`).join(""):'<div class="panel" style="padding:15px"><b>No applications yet.</b><p class="muted">Add your first target role.</p></div>';l.querySelectorAll("[data-status]").forEach(s=>s.onchange=()=>{state.jobs[+s.dataset.status].status=s.value;save();renderJobs();toast("Status updated")});l.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{state.jobs.splice(+b.dataset.delete,1);save();renderJobs();toast("Application removed")})}
+function renderProfile(){$("profileSkills").innerHTML=D.skills.map(s=>`<span class="chip">${esc(s)}</span>`).join("");$("profileProjects").innerHTML=D.projects.map(p=>`<div class="panel" style="padding:11px"><strong style="font-size:12px">${esc(p.title)}</strong><span style="display:block;color:var(--muted);font-size:10px;margin-top:4px">${esc(p.tools)}</span></div>`).join("")}
+function analyzeJob(){const t=$("jdInput").value.toLowerCase().trim();if(!t){toast("Paste a job description first");return}const matched=D.skills.filter(s=>t.includes(s.toLowerCase()));const extra=["DAX","Tableau","Statistics","AWS","dbt","Fabric","Snowflake"].filter(x=>t.includes(x.toLowerCase())&&!matched.some(m=>m.toLowerCase()===x.toLowerCase()));const required=matched.length+extra.length;const score=required?Math.round(matched.length/required*100):0;$("matchResult").innerHTML=`<div class="panel" style="padding:14px;margin-top:10px"><div class="match-head"><div><div class="eyebrow">LOCAL MATCH ESTIMATE</div><h3 style="margin:0">Resume fit</h3></div><div class="match-score">${score}%</div></div><div class="match-grid"><div class="match-list"><strong>Matched</strong><p>${matched.length?matched.map(esc).join(" · "):"No exact resume skills detected."}</p></div><div class="match-list"><strong>Watch</strong><p>${extra.length?extra.map(esc).join(" · "):"No extra watch-list terms detected."}</p></div></div><div class="feedback warn" style="margin-top:9px"><b>Next move:</b> practice the matched skills and review any watch-list terms before applying.</div></div>`}
+$("addJobBtn").onclick=()=>$("jobModal").classList.remove("hidden");$("closeJobModal").onclick=()=>$("jobModal").classList.add("hidden");$("jobModal").onclick=e=>{if(e.target.id==="jobModal")$("jobModal").classList.add("hidden")};$("saveJob").onclick=()=>{const company=$("jobCompany").value.trim(),role=$("jobRole").value.trim();if(!company||!role){toast("Company and role are required");return}state.jobs.unshift({company,role,status:$("jobStatus").value,notes:$("jobNotes").value.trim()});["jobCompany","jobRole","jobNotes"].forEach(id=>$(id).value="");$("jobModal").classList.add("hidden");save();renderJobs();toast("Application saved ✓")};
+document.querySelectorAll("[data-jobtab]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-jobtab]").forEach(x=>x.classList.toggle("active",x===b));$("trackerTab").classList.toggle("hidden",b.dataset.jobtab!=="tracker");$("matcherTab").classList.toggle("hidden",b.dataset.jobtab!=="matcher")});
+$("analyzeJob").onclick=analyzeJob;
+$("moreFloating").onclick=()=>$("moreSheet").classList.remove("hidden");$("closeSheet").onclick=()=>$("moreSheet").classList.add("hidden");$("moreSheet").onclick=e=>{if(e.target.id==="moreSheet")$("moreSheet").classList.add("hidden")};
+$("resetBtn").onclick=()=>{if(confirm("Reset local progress?")){localStorage.removeItem(KEY);location.reload()}};
+function init(){renderRoadmap();renderLessons();renderPractice();renderInterview();renderSql();renderPbi();renderProjects();renderRevision();renderJobs();renderProfile();renderStats()}
+init();
+})();
+</script>
+</body>
+</html>
